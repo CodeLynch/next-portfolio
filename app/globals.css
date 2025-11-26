@@ -1,21 +1,27 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #ffdae8 ;
+  --foreground: #480a30;
+  --primary: #b41360;
+  --secondary: #ff327c;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  --background:  #71a8c6;
+  --foreground: #6fc4b2;
+  --primary: #f7e2e3;
+  --secondary: #9edeb5;
   }
 }
 
@@ -23,4 +29,126 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+button {
+  background-image: linear-gradient(to right, rgba(255,255,255,0) 50%, var(--secondary) 50%);
+  background-position: -0% 0;
+  background-size: 201% auto;
+  color: var(--foreground);
+  padding: 5px;
+  cursor: pointer;
+  font-weight: 900;
+  transition: background-position 0.2s ease-out;
+}
+
+button:hover{
+  background-position: -99.99% 0;
+}
+
+.active {
+  background-color: var(--secondary);
+  color: var(--background)
+}
+
+.option-list li{
+    width: 500px;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.option-list li:hover{
+  background-color: var(--secondary);
+  color: var(--background)
+}
+
+.fade-in{
+    animation: fade-in .5s ease-in .2s forwards;
+}
+
+.text-fade-in{
+    animation: fade-in .5s ease-in forwards;
+}
+
+
+.dot {
+  height: 500px;
+  width: 500px;
+  background-color: var(--primary);
+  border-radius: 50%;
+  display: inline-block;
+  animation: grow .5s cubic-bezier(0, 0, 0.2, 1);
+}
+
+.dot:before,
+.dot:after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0; 
+  right: 0; 
+  bottom: 0; 
+  left: 0;
+  border: 5px solid var(--primary);
+  border-radius: 50%;
+}
+
+
+.dot:before {
+  animation: ripple .5s linear .1s;
+}
+
+.dot:after {
+  animation: ripple .5s linear .3s;
+}
+
+
+@keyframes grow{
+    from { transform: scale(0.1)};
+    to { transform: scale(1)};
+}
+
+@keyframes ripple{
+  0% { transform: scale(1); }
+  50% { transform: scale(1.3); opacity:1; }
+  100% { transform: scale(1.6); opacity:0; }
+}
+
+@keyframes fade-in{
+    from { opacity: 0};
+    to { opacity: 1};
+}
+
+.roles {
+  list-style: none;
+  margin: 0;
+  height: 50px;
+  overflow: hidden;
+}
+
+.roles li {
+  position: relative;
+  animation: cycle-5-items 10s ease-in-out alternate infinite;
+}
+
+@keyframes cycle-5-items {
+  0%, 10% {
+    transform: translateY(0%);
+  }
+  
+  15%, 35% {
+    transform: translateY(-49px);
+  }
+  
+  40%, 60% {
+    transform: translateY(-98px);
+  }
+  
+  65%, 85% {
+    transform: translateY(-147px);
+  }
+  
+  90%, 100% {
+    transform: translateY(-193px);
+  }
 }
