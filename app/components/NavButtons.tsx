@@ -12,7 +12,7 @@ export default function NavButtons() {
         {
             name: "skills",
             label: "Skills",
-            matches: ["/skills"],
+            matches: ["/skills", "/skills/languages", "skills/frameworks"],
         },
         {
             name: "projects",
@@ -30,12 +30,12 @@ export default function NavButtons() {
         return matches.includes(pathname);
     }
 
-  return (
-    <div className="flex flex-row gap-3">
-    {links.map((link) => (
-         <Link key={link.name} href={"/" + link.name}> <button className={ isLinkActive(link.matches) ? "text-xl active" : "text-xl"} >{link.label}</button></Link>
-    ))}
-    </div>
-  );
+    return (
+        <div className="flex flex-row gap-3">
+            {links.map((link) => (
+                <Link key={link.name} href={"/" + link.name}> <button className={isLinkActive(link.matches) ? "text-xl active" : "text-xl"} >{link.label}</button></Link>
+            ))}
+        </div>
+    );
 }
 
